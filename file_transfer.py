@@ -4,6 +4,7 @@ import tkinter.filedialog
 import os
 import shutil
 import datetime
+from datetime import date, datetime, time, timedelta
 
 
 class ParentWindow(Frame):
@@ -13,9 +14,10 @@ class ParentWindow(Frame):
         self.master.title("File Transfer")
 
        #Creates button to select files from source directory
-        self.sourceDir_btn = Button(text="Select Source", width=20)
+        self.sourceDir_btn = Button(text="Select Source", width=20, command=self.sourceDir)
         #Positions source button in GUI using tkinter grid()
         self.sourceDir_btn.grid(row=0, column=0, padx=(20, 10), pady=(30, 0))
+        
 
         #Creates entry for source directory selection
         self.source_dir = Entry(width=75)
@@ -24,7 +26,7 @@ class ParentWindow(Frame):
         self.source_dir.grid(row=0, column=1, columnspan=2, padx=(20, 10), pady=(30, 0))
         
         #Creates button to select destination of files from destination directory
-        self.destDir_btn = Button(text="Select Destination", width=20)
+        self.destDir_btn = Button(text="Select Destination", width=20, command=self.destDir)
         #Positions destination button in GUI using tkinter grid()
         #on the next row under source button
         self.destDir_btn.grid(row=1, column=0, padx=(20, 10), pady=(15, 10))
@@ -32,7 +34,7 @@ class ParentWindow(Frame):
         
 
         #Creates entry for destination directory selection
-        self.destination_dir =Entry(width=75)
+        self.destination_dir = Entry(width=75)
         #Positions entry in GUI using tkinter grid() padx and pady are the same as
         #the button to ensure they will line up
         self.destination_dir.grid(row=1, column=1, columnspan=2, padx=(20, 10), pady=(15, 10))
@@ -55,8 +57,7 @@ class ParentWindow(Frame):
         self.source_dir.delete(0, END)
         #The .insert method will insert the user selection to the source_dir entry
         self.source_dir.insert(0, selectSourceDir)
-        #Creates button to select files from source directory
-        self.sourceDir_btn = Button(text="Select Source", width=20, command=self.sourceDir)
+        
         
     #Creates function to select destination directory.
     def destDir(self):
@@ -66,8 +67,7 @@ class ParentWindow(Frame):
         self.destination_dir.delete(0, END)
         #The .insert method will insert the user selection to the destination_dir entry widget
         self.destination_dir.insert(0, selectDestDir)
-        #Creates button to select destination of files from destination directory
-        self.destDir_btn = Button(text="Select Destination", width=20, command=self.destDir)
+        
 
     #Creates function to transfer files from one directory to another
     def transferFiles(self):
@@ -80,11 +80,30 @@ class ParentWindow(Frame):
         #Runs through each file in the source directory
         for i in source_files:
             #moves each file from the source to the destination
-            shutil.move(srouce + '/' + i, destination)
+            shutil.move(source + '/' + i, destination)
             print(i + ' was successfully transferred.')
-        from datetime import date, datetime, time, timedelta
-        dt = datetime.combine(date.today(), time(23, 55)) + timedelta(minutes=30)
-        print (dt.time())
+
+    def timedelta(self):
+        time_now = datetime.datetime.now()
+        print(time_now.strftime("%c"))
+        os.path.getmtime('C:...\Python-Projects\Customer Source')
+        # Path to the file
+        path = r"...\Customer Source"
+ 
+        # Both the variables would contain time
+        # elapsed since EPOCH in float
+        ti_c = os.path.getctime(path)
+        ti_m = os.path.getmtime(path)
+ 
+        # Converting the time in seconds to a timestamp
+        c_ti = time.ctime(ti_c)
+        m_ti = time.ctime(ti_m)
+ 
+        print(
+        f"The file located in {path} was \
+        created at {c_ti} and was last modified at {m_ti}")
+        
+      
 
         
         
