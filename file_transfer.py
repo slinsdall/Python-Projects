@@ -87,26 +87,25 @@ class ParentWindow(Frame):
         time_now = datetime.datetime.now()
         print(time_now.strftime("%c"))
         os.path.getmtime('C:...\Python-Projects\Customer Source')
-        # Path to the file
-        path = r"...\Customer Source"
+        path = r"C:...\Python-Projects\Customer Source"
  
-        # Both the variables would contain time
-        # elapsed since EPOCH in float
-        ti_c = os.path.getctime(path)
-        ti_m = os.path.getmtime(path)
+        # file modification
+        timestamp = os.path.getmtime(path)
  
-        # Converting the time in seconds to a timestamp
-        c_ti = time.ctime(ti_c)
-        m_ti = time.ctime(ti_m)
+        # convert timestamp into DateTime object
+        datestamp = datetime.datetime.fromtimestamp(timestamp)
+        print('Modified Date/Time:', datestamp)
+        if mtime<24:
+               print(mtime)
  
-        print(
-        f"The file located in {path} was \
-        created at {c_ti} and was last modified at {m_ti}")
-        
-      
-
-        
-        
+        # file creation
+        c_timestamp = os.path.getctime(path)
+ 
+        # convert creation timestamp into DateTime object
+        c_datestamp = datetime.datetime.fromtimestamp(c_timestamp)
+        print('Created Date/Time on:', c_datestamp)
+        if ctime<24:
+            print(ctime)
        
 
     #Creates function to exit program
