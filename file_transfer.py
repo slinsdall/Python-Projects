@@ -94,18 +94,16 @@ class ParentWindow(Frame):
  
         # convert timestamp into DateTime object
         datestamp = datetime.datetime.fromtimestamp(timestamp)
-        print('Modified Date/Time:', datestamp)
         if mtime<24:
-               print(mtime)
+               print('Modified Date/Time:', mtime)
  
         # file creation
         c_timestamp = os.path.getctime(path)
  
         # convert creation timestamp into DateTime object
         c_datestamp = datetime.datetime.fromtimestamp(c_timestamp)
-        print('Created Date/Time on:', c_datestamp)
         if ctime<24:
-            print(ctime)
+            print('Created Date/Time on:', ctime)
        
 
     #Creates function to exit program
