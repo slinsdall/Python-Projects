@@ -7,14 +7,11 @@ TYPE_CHOICES = (
     ("treats", "treats"),
     ("drinks", "drinks"),
 )
-
-
-
 class Product(models.Model):
     type = models.CharField(max_length=60, choices=TYPE_CHOICES)
     name = models.CharField(max_length=60, default="", blank=True)
     description = models.TextField(max_length=300, default="", blank=True)
-    price = models.DecimalField(default=0.00,max_digits=10000, decimal_places=2)
+    price = models.DecimalField(default=0.00, max_digits=10000, decimal_places=2)
     image = models.CharField(max_length=255, default="", blank=True)
 
     objects = models.Manager()
